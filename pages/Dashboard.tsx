@@ -8,11 +8,10 @@ import ProfessorCard from '../components/ProfessorCard';
 import LoadingSpinner from '../components/common/LoadingSpinner';
 import { Link } from 'react-router-dom';
 import Button from '../components/common/Button';
-// Added import for StarRating component
 import StarRating from '../components/common/StarRating';
 
 const Dashboard: React.FC = () => {
-  const { user, translate, language } = useAuth();
+  const { user, translate, language, updateUserDetails } = useAuth();
   const [professorDetails, setProfessorDetails] = useState<Professor | null>(null);
   const [allChannels, setAllChannels] = useState<Channel[]>([]);
   const [myChannels, setMyChannels] = useState<Channel[]>([]);
@@ -72,7 +71,7 @@ const Dashboard: React.FC = () => {
 
       {user?.role === UserRole.PROFESSOR && professorDetails && (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
-          <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md">
+          <div className="bg-white dark:bg-gray-800 p-6 rounded-xl shadow-lg">
             <h2 className="text-2xl font-semibold text-gray-900 dark:text-white mb-4">{translate('welcomeProfessor')}</h2>
             <p className="text-gray-700 dark:text-gray-300 mb-2">
               {translate('fullName')}: {professorDetails.name}
@@ -85,7 +84,7 @@ const Dashboard: React.FC = () => {
             </Link>
           </div>
 
-          <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md">
+          <div className="bg-white dark:bg-gray-800 p-6 rounded-xl shadow-lg">
             <h2 className="text-2xl font-semibold text-gray-900 dark:text-white mb-4">{translate('myChannels')}</h2>
             {myChannels.length > 0 ? (
               <ul className="space-y-2">
@@ -111,7 +110,7 @@ const Dashboard: React.FC = () => {
             </Link>
           </div>
 
-          <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md">
+          <div className="bg-white dark:bg-gray-800 p-6 rounded-xl shadow-lg">
             <h2 className="text-2xl font-semibold text-gray-900 dark:text-white mb-4">{translate('myAnnouncements')}</h2>
             {myAnnouncements.length > 0 ? (
               <ul className="space-y-2">
@@ -139,7 +138,7 @@ const Dashboard: React.FC = () => {
 
       {user?.role === UserRole.STUDENT && (
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
-          <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md">
+          <div className="bg-white dark:bg-gray-800 p-6 rounded-xl shadow-lg">
             <h2 className="text-2xl font-semibold text-gray-900 dark:text-white mb-4">{translate('mySubscribedChannels')}</h2>
             {myChannels.length > 0 ? (
               <div className="grid grid-cols-1 gap-4">
@@ -160,7 +159,7 @@ const Dashboard: React.FC = () => {
             </Link>
           </div>
 
-          <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md">
+          <div className="bg-white dark:bg-gray-800 p-6 rounded-xl shadow-lg">
             <h2 className="text-2xl font-semibold text-gray-900 dark:text-white mb-4">{translate('myFollowedProfessors')}</h2>
             {followedProfessors.length > 0 ? (
               <div className="grid grid-cols-1 gap-4">

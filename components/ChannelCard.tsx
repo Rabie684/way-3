@@ -16,7 +16,7 @@ const ChannelCard: React.FC<ChannelCardProps> = ({ channel, professorName, onSub
   const { translate, user } = useAuth();
 
   return (
-    <div className="bg-white dark:bg-gray-700 rounded-lg shadow-md p-6 flex flex-col hover:shadow-lg transition-shadow duration-200">
+    <div className="bg-white dark:bg-gray-700 rounded-xl shadow-lg p-6 flex flex-col hover:shadow-xl transform hover:-translate-y-1 transition-all duration-300">
       <Link to={`/channel/${channel.id}`} className="block">
         <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-2 hover:text-primary-DEFAULT dark:hover:text-primary-light transition-colors">
           {channel.name}

@@ -15,7 +15,7 @@ const ProfessorCard: React.FC<ProfessorCardProps> = ({ professor, onFollowToggle
   const { translate, user } = useAuth();
 
   return (
-    <div className="bg-white dark:bg-gray-700 rounded-lg shadow-md p-6 flex flex-col items-center text-center hover:shadow-lg transition-shadow duration-200">
+    <div className="bg-white dark:bg-gray-700 rounded-xl shadow-lg p-6 flex flex-col items-center text-center hover:shadow-xl transform hover:-translate-y-1 transition-all duration-300">
       <img
         src={professor.profilePicture || 'https://picsum.photos/200/200?random=default-prof'}
         alt={professor.name}

@@ -11,7 +11,7 @@ import ChannelCard from '../components/ChannelCard';
 
 const ProfessorProfile: React.FC = () => {
   const { professorId } = useParams<{ professorId: string }>();
-  const { user, translate, language } = useAuth();
+  const { user, translate, language, updateUserDetails: contextUpdateUserDetails } = useAuth();
   const [professor, setProfessor] = useState<Professor | null>(null);
   const [professorChannels, setProfessorChannels] = useState<Channel[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
@@ -68,8 +68,8 @@ const ProfessorProfile: React.FC = () => {
         updatedFollowedProfessors = [...studentDetails.followedProfessors, professor.id];
       }
 
-      // Passed user.id as the first argument to updateUserDetails
-      const success = await updateUserDetails(user.id, { followedProfessors: updatedFollowedProfessors });
+      // Reverted to correctly call the context's updateUserDetails with only the updates object
+      const success = await contextUpdateUserDetails({ followedProfessors: updatedFollowedProfessors });
       if (success) {
         setIsFollowing(!isFollowing);
       } else {
@@ -99,7 +99,7 @@ const ProfessorProfile: React.FC = () => {
 
   return (
     <div className="container mx-auto p-4" style={{ direction: currentDirection }}>
-      <div className="bg-white dark:bg-gray-800 rounded-lg shadow-xl p-8 mb-8 flex flex-col items-center md:flex-row md:items-start md:space-x-8">
+      <div className="bg-white dark:bg-gray-800 rounded-xl shadow-xl p-8 mb-8 flex flex-col items-center md:flex-row md:items-start md:space-x-8">
         <img
           src={professor.profilePicture || 'https://picsum.photos/200/200?random=default-prof'}
           alt={professor.name}
@@ -129,7 +129,7 @@ const ProfessorProfile: React.FC = () => {
         </div>
       </div>
 
-      <div className="bg-white dark:bg-gray-800 rounded-lg shadow-xl p-8">
+      <div className="bg-white dark:bg-gray-800 rounded-xl shadow-xl p-8">
         <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-6">{translate('myChannels')}</h2>
         {professorChannels.length > 0 ? (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">

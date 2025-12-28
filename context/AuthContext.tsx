@@ -105,7 +105,8 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children, translatio
   const setLanguage = (lang: 'ar' | 'fr') => {
     setLanguageState(lang);
     if (user) {
-      updateUserDetails( {language: lang}); // Update user language preference
+      // Reverted to correctly call the context's updateUserDetails with only the updates object
+      updateUserDetails({language: lang}); // Update user language preference
     }
   };
 

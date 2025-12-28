@@ -14,6 +14,9 @@ export const users: (Professor | Student)[] = [
     profilePicture: 'https://picsum.photos/200/200?random=prof1',
     phoneNumber: '0555123456',
     language: 'ar',
+    // Add missing properties for Professor type
+    stars: 4.5, // Default mock value
+    channels: [], // Will be populated dynamically in channelService
   },
   {
     id: 'prof2',
@@ -26,6 +29,9 @@ export const users: (Professor | Student)[] = [
     profilePicture: 'https://picsum.photos/200/200?random=prof2',
     phoneNumber: '0555654321',
     language: 'fr',
+    // Add missing properties for Professor type
+    stars: 4.0, // Default mock value
+    channels: [], // Will be populated dynamically in channelService
   },
   {
     id: 'student1',

@@ -124,7 +124,7 @@ const ProfessorChannels: React.FC = () => {
       {channels.length > 0 ? (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
           {channels.map((channel) => (
-            <div key={channel.id} className="bg-white dark:bg-gray-700 rounded-lg shadow-md p-6 flex flex-col">
+            <div key={channel.id} className="bg-white dark:bg-gray-700 rounded-xl shadow-lg p-6 flex flex-col hover:shadow-xl transform hover:-translate-y-1 transition-all duration-300">
               <Link to={`/channel/${channel.id}`} className="block">
                 <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-2 hover:text-primary-DEFAULT dark:hover:text-primary-light transition-colors">
                   {channel.name}
@@ -163,7 +163,7 @@ const ProfessorChannels: React.FC = () => {
       {announcements.length > 0 ? (
         <div className="space-y-4">
           {announcements.map((ann) => (
-            <div key={ann.id} className="bg-white dark:bg-gray-700 p-4 rounded-lg shadow-sm">
+            <div key={ann.id} className="bg-white dark:bg-gray-700 p-4 rounded-xl shadow-sm">
               <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-2">{ann.title}</h3>
               <p className="text-gray-700 dark:text-gray-200">{ann.content}</p>
               <p className="text-sm text-gray-500 dark:text-gray-400 mt-2">

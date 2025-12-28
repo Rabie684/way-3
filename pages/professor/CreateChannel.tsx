@@ -160,7 +160,6 @@ const CreateChannel: React.FC = () => {
       description: channelDescription,
       department,
       meetLink: meetLink || undefined,
-      // Added 'price' property with a default value, as it's required by the Channel type.
       price: 50, // Default price as per project requirements/mock data
     };
 
@@ -213,7 +212,7 @@ const CreateChannel: React.FC = () => {
         {isEditing ? translate('editChannel') : translate('createChannel')}
       </h1>
 
-      <div className="bg-white dark:bg-gray-800 rounded-lg shadow-xl p-8 max-w-3xl mx-auto">
+      <div className="bg-white dark:bg-gray-800 rounded-xl shadow-xl p-8 max-w-3xl mx-auto">
         {message && <p className="text-green-500 text-center mb-4">{message}</p>}
         {error && <p className="text-red-500 text-center mb-4">{error}</p>}
 

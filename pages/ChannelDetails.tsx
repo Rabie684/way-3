@@ -10,7 +10,7 @@ import Button from '../components/common/Button';
 
 const ChannelDetails: React.FC = () => {
   const { id } = useParams<{ id: string }>();
-  const { user, translate, language } = useAuth();
+  const { user, translate, language, updateUserDetails: contextUpdateUserDetails } = useAuth();
   const [channel, setChannel] = useState<Channel | null>(null);
   const [professorName, setProfessorName] = useState<string>('');
   const [loading, setLoading] = useState<boolean>(true);
@@ -65,8 +65,8 @@ const ChannelDetails: React.FC = () => {
         alert(translate('paymentSuccess'));
         // Update user's subscribed channels in auth context
         const studentDetails = getUserDetails(user.id) as any;
-        // Passed user.id as the first argument to updateUserDetails
-        await updateUserDetails(user.id, { subscribedChannels: [...(studentDetails?.subscribedChannels || []), channel.id] });
+        // Reverted to correctly call the context's updateUserDetails with only the updates object
+        await contextUpdateUserDetails({ subscribedChannels: [...(studentDetails?.subscribedChannels || []), channel.id] });
       } else {
         alert(translate('paymentFailed'));
       }
@@ -94,7 +94,7 @@ const ChannelDetails: React.FC = () => {
 
   return (
     <div className="container mx-auto p-4" style={{ direction: currentDirection }}>
-      <div className="bg-white dark:bg-gray-800 rounded-lg shadow-xl p-8 mb-8">
+      <div className="bg-white dark:bg-gray-800 rounded-xl shadow-xl p-8 mb-8">
         <h1 className="text-4xl font-extrabold text-primary-DEFAULT mb-4">{channel.name}</h1>
         <p className="text-lg text-gray-700 dark:text-gray-300 mb-2">
           {translate('professor')}: <Link to={`/professor/${channel.professorId}`} className="text-secondary hover:underline">{professorName}</Link>
@@ -134,7 +134,7 @@ const ChannelDetails: React.FC = () => {
         )}
       </div>
 
-      <div className="bg-white dark:bg-gray-800 rounded-lg shadow-xl p-8">
+      <div className="bg-white dark:bg-gray-800 rounded-xl shadow-xl p-8">
         <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-6">{translate('content')}</h2>
         {channel.content.length > 0 ? (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">

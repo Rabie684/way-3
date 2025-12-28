@@ -11,7 +11,7 @@ import ProfessorCard from '../components/ProfessorCard';
 import { FACULTIES, DEPARTMENTS } from '../constants';
 
 const ChannelList: React.FC = () => {
-  const { user, translate, language } = useAuth();
+  const { user, translate, language, updateUserDetails: contextUpdateUserDetails } = useAuth();
   const [channels, setChannels] = useState<Channel[]>([]);
   const [professors, setProfessors] = useState<Professor[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
@@ -58,9 +58,8 @@ const ChannelList: React.FC = () => {
       setChannels(prevChannels => prevChannels.map(ch =>
         ch.id === channelId ? { ...ch, subscriberCount: ch.subscriberCount + 1 } : ch
       ));
-      // Optionally, update the user's subscribedChannels in AuthContext if needed immediately
-      // Passed user.id as the first argument to updateUserDetails
-      await updateUserDetails(user.id, { subscribedChannels: [...subscribedChannelIds, channelId] });
+      // Reverted to correctly call the context's updateUserDetails with only the updates object
+      await contextUpdateUserDetails({ subscribedChannels: [...subscribedChannelIds, channelId] });
     } else {
       alert(translate('paymentFailed'));
     }
@@ -80,9 +79,8 @@ const ChannelList: React.FC = () => {
     }
     setFollowedProfIds(updatedFollowedProfIds);
 
-    // Update user in the backend/context
-    // Passed user.id as the first argument to updateUserDetails
-    await updateUserDetails(user.id, { followedProfessors: updatedFollowedProfIds });
+    // Reverted to correctly call the context's updateUserDetails with only the updates object
+    await contextUpdateUserDetails({ followedProfessors: updatedFollowedProfIds });
   };
 
 
@@ -119,7 +117,7 @@ const ChannelList: React.FC = () => {
         {translate('channels')}
       </h1>
 
-      <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md mb-8">
+      <div className="bg-white dark:bg-gray-800 p-6 rounded-xl shadow-lg mb-8">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
           <Input
             type="text"

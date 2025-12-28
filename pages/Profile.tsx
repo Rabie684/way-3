@@ -65,6 +65,7 @@ const Profile: React.FC = () => {
       language, // Ensure language is saved if changed via header
     };
 
+    // Correctly call the context's updateUserDetails with only the updates object
     const success = await updateUserDetails(updates);
     if (success) {
       setMessage(translate('updateSuccessful'));
@@ -85,7 +86,7 @@ const Profile: React.FC = () => {
         {translate('profile')}
       </h1>
 
-      <div className="bg-white dark:bg-gray-800 rounded-lg shadow-xl p-8 max-w-2xl mx-auto">
+      <div className="bg-white dark:bg-gray-800 rounded-xl shadow-xl p-8 max-w-2xl mx-auto">
         {message && <p className="text-green-500 text-center mb-4">{message}</p>}
         {error && <p className="text-red-500 text-center mb-4">{error}</p>}
 

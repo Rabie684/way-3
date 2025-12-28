@@ -54,7 +54,7 @@ const Register: React.FC = () => {
 
   return (
     <div className="flex items-center justify-center min-h-screen-minus-header bg-gray-100 dark:bg-gray-900">
-      <div className="bg-white dark:bg-gray-800 p-8 rounded-lg shadow-lg w-full max-w-md">
+      <div className="bg-white dark:bg-gray-800 p-8 rounded-xl shadow-xl w-full max-w-md">
         <h2 className="text-3xl font-bold text-center text-primary-DEFAULT mb-6">
           {translate('register')}
         </h2>
