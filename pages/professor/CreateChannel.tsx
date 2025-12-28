@@ -252,7 +252,7 @@ const CreateChannel: React.FC = () => {
 
           <h2 className="text-2xl font-bold text-gray-900 dark:text-white mt-8 mb-4">{translate('uploadContent')}</h2>
 
-          <div className="space-y-4 border border-gray-200 dark:border-gray-700 p-4 rounded-lg">
+          <div className="space-y-4 border border-gray-200 dark:border-gray-700 p-4 rounded-xl">
             <Input
               label={translate('contentTitle')}
               type="text"

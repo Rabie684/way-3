@@ -81,7 +81,7 @@ const ChatPage: React.FC = () => {
   }
 
   return (
-    <div className="flex flex-col h-[calc(100vh-10rem)] bg-white dark:bg-gray-800 rounded-lg shadow-xl p-4 md:p-6" style={{ direction: currentDirection }}>
+    <div className="flex flex-col h-[calc(100vh-10rem)] bg-white dark:bg-gray-800 rounded-xl shadow-xl p-4 md:p-6" style={{ direction: currentDirection }}>
       <h1 className="text-3xl font-bold text-primary-DEFAULT mb-4 border-b pb-2 dark:border-gray-700">
         {translate('chatWithProfessor')} {receiverName}
       </h1>
